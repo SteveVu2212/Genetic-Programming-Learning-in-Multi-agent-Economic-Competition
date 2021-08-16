@@ -5,8 +5,8 @@ import numpy as np
 from copy import copy
 import matplotlib.pyplot as plt
 from random import randint, seed
-# from graphviz import Digraph, Source
-# from IPython.display import Image, display
+from graphviz import Digraph, Source
+from IPython.display import Image, display
 
 random.seed(42)
 
@@ -44,25 +44,25 @@ class GPTree:
         if self.left:  self.left.print_tree (prefix + "   ") #Recursive here
         if self.right: self.right.print_tree(prefix + "   ")
 
-    # def draw(self, dot, count): # dot & count are lists in order to pass "by reference" 
-    #     node_name = str(count[0])
-    #     dot[0].node(node_name, self.node_label())
-    #     if self.left:
-    #         count[0] += 1
-    #         dot[0].edge(node_name, str(count[0]))
-    #         self.left.draw(dot, count)
-    #     if self.right:
-    #         count[0] += 1
-    #         dot[0].edge(node_name, str(count[0]))
-    #         self.right.draw(dot, count)
+    def draw(self, dot, count): # dot & count are lists in order to pass "by reference" 
+        node_name = str(count[0])
+        dot[0].node(node_name, self.node_label())
+        if self.left:
+            count[0] += 1
+            dot[0].edge(node_name, str(count[0]))
+            self.left.draw(dot, count)
+        if self.right:
+            count[0] += 1
+            dot[0].edge(node_name, str(count[0]))
+            self.right.draw(dot, count)
         
-    # def draw_tree(self, fname, footer):
-    #     dot = [Digraph()]
-    #     dot[0].attr(kw='graph', label = footer)
-    #     count = [0]
-    #     self.draw(dot, count)
-    #     Source(dot[0], filename = fname + ".gv", format="png").render()
-    #     display(Image(filename = fname + ".gv.png"))
+    def draw_tree(self, fname, footer):
+        dot = [Digraph()]
+        dot[0].attr(kw='graph', label = footer)
+        count = [0]
+        self.draw(dot, count)
+        Source(dot[0], filename = fname + ".gv", format="png").render()
+        display(Image(filename = fname + ".gv.png"))
 
     def compute_tree(self): 
         if (self.data in FUNCTIONS[0]): 
