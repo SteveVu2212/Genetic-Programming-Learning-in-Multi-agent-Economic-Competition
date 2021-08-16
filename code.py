@@ -66,9 +66,9 @@ class GPTree:
 
     def compute_tree(self): 
         if (self.data in FUNCTIONS[0]): 
-          return self.data(self.left.compute_tree(), self.right.compute_tree())
+            return self.data(self.left.compute_tree(), self.right.compute_tree())
         elif (self.data in FUNCTIONS[1]):
-          return self.data(self.left.compute_tree())
+            return self.data(self.left.compute_tree())
         else: return self.data #self.data in  TERMINALS
 
     def random_tree(self, grow, max_depth, depth = 0): # create random tree using either grow or full method
@@ -182,7 +182,7 @@ class GP():
                     parents.append([population[i], population[i+1]])
         else:
             parents.append(population * 2)
-            return parents
+        return parents
 
     def crossover(self, parents):
         child1 = copy(parents[0])
@@ -259,14 +259,14 @@ for gen in range(Evolution_parameters['GENERATIONS']):
 
     dict_quantity = {}
     for i in range(Cobweb_parameters['NUM_FIRMS']):
-      firm_population = new_population[i]
-      for j in list(firm_population.keys()):
-        if j not in dict_quantity:
-          dict_quantity[j] = model.quantity(j.compute_tree())
+        firm_population = new_population[i]
+        for j in list(firm_population.keys()):
+            if j not in dict_quantity:
+                dict_quantity[j] = model.quantity(j.compute_tree())
 
     list_competing_quantity = []
     for i in start_competing_strategies:
-      list_competing_quantity.append(dict_quantity[i])
+        list_competing_quantity.append(dict_quantity[i])
     
     price = round(model.market_price(list_competing_quantity), 3)
     list_price.append(price)
@@ -274,49 +274,49 @@ for gen in range(Evolution_parameters['GENERATIONS']):
     TERMINALS = []
     update_terminals.append(price)
     if len(update_terminals) > Cobweb_parameters['H']:
-      update_terminals.pop(0)
+        update_terminals.pop(0)
     TERMINALS += update_terminals
 
     next_population = []
     next_competing_strategies = []
 
     for firm in range(Cobweb_parameters['NUM_FIRMS']):
+        
+        population = new_population[firm]
+        lst_stra = list(population.keys())
 
-      population = new_population[firm]
-      lst_stra = list(population.keys())
+        firm_quantity = {}
+        for i in list(lst_stra):
+            firm_quantity[i] = dict_quantity[i]
 
-      firm_quantity = {}
-      for i in list(lst_stra):
-        firm_quantity[i] = dict_quantity[i]
+        firm_cost = {}
+        for i in list(lst_stra):
+            firm_cost[i] = model.cost(firm_quantity[i])
 
-      firm_cost = {}
-      for i in list(lst_stra):
-        firm_cost[i] = model.cost(firm_quantity[i])
+        firm_profit = {}
+        for i in list(lst_stra):
+            firm_profit[i] = model.adjusted_profit(price, firm_quantity[i], firm_cost[i])
 
-      firm_profit = {}
-      for i in list(lst_stra):
-        firm_profit[i] = model.adjusted_profit(price, firm_quantity[i], firm_cost[i])
+        ind_selection = []
+        for i in range(Evolution_parameters['POP_SIZE']):
+            ind_selection.append(Evolution.selection(firm_profit))
 
-      ind_selection = []
-      for i in range(Evolution_parameters['POP_SIZE']):
-        ind_selection.append(Evolution.selection(firm_profit))
+        survival = {}
+        for i in ind_selection:
+            if i not in lst_stra:
+                survival[i] == 1
+            else:
+                survival[i] = population[i]
 
-      survival = {}
-      for i in ind_selection:
-        if i not in lst_stra:
-          survival[i] == 1
-        else:
-          survival[i] = population[i]
+        survival_profit = {}
+        for i in survival:
+            survival_profit[i] = firm_profit[i]
 
-      survival_profit = {}
-      for i in survival:
-        survival_profit[i] = firm_profit[i]
+        submitted_strategy = Evolution.selection(survival_profit)
 
-      submitted_strategy = Evolution.selection(survival_profit)
-
-      next_population.append(survival)
-      next_competing_strategies.append(submitted_strategy)
-      list_expected_price[firm][gen] = competing_strategies[firm].compute_tree()
+        next_population.append(survival)
+        next_competing_strategies.append(submitted_strategy)
+        list_expected_price[firm][gen] = competing_strategies[firm].compute_tree()
 
     initial_population = next_population
     competing_strategies = next_competing_strategies
