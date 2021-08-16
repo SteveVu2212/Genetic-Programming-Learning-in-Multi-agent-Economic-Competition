@@ -52,11 +52,13 @@ Below is an example of a strategy. That represents the function mapping previous
 
 The forecasting function is explicitly written as:
 
-$P^e_{best, 14}$ = $log(log(R) - P_{t-1} * P_{t-2})$
+![](https://github.com/SteveVu2212/Genetic-Programming-Learning-in-Multi-agent-Economic-Competition/blob/main/images/forecast%20functions.png)
 
 ![](https://github.com/SteveVu2212/Genetic-Programming-Learning-in-Multi-agent-Economic-Competition/blob/main/images/strategy_representation.png)
 
 ## 4. Results
+
+The price patterns of GP-based markets have a tendency towards the rational expectations equilibrium (REE) of 1.12. There is also a self-stabilizing feature brining back every deviation from the equilibrium in the market. Lastly, under perfect competition, all kinds of sophisticated strategic behavior will eventually be useless because the price in the rational expectations equilibrium will not fluctuate very much.
 
 ![](https://github.com/SteveVu2212/Genetic-Programming-Learning-in-Multi-agent-Economic-Competition/blob/main/images/equilibrium_price.png)
 
