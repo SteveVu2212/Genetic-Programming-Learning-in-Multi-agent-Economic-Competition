@@ -26,7 +26,19 @@ Secondly, the project considers a very unstable case with Cobweb ratio of 3. The
 
 The main difference between GAs and GP is that the latter represents its chromosomes/strategies by parse trees written over the *function set* and *terminal set*. Terminals are variables and constants while functions are operations.
 
+|Parameters|Values|
+|---------|:----:|
+|Number of firms|100|
+|Population size|150|
+|Number of trees created by **full** method|80|
+|Number of trees created by **growth** method|80|
+|Function set|{+ ,- ,x ,% ,Log ,Sin ,Cos}|
+|Terminal set|{R, Prices lagged upto 10 periods}|
+
+
 The project uses a widely used method of *Ramped half-and-half* to initialize the population. The method is a combination of the **ful** and **growth** methods which ensure that parse trees do not exceed a specified maximum depth. The depth of a node is the number of edges that need to be traversed to reach the node starting from the tree's root node. While the **full** method generates trees where all the leaves are at the same depth, the **growth** method allows for the creation of trees of more varied sizes and shapes.
+
+Below is an example of a strategy. That represents the function mapping previous prices into an expectation of price in a period.
 
 ![](https://github.com/SteveVu2212/Genetic-Programming-Learning-in-Multi-agent-Economic-Competition/blob/main/images/strategy_representation.png)
 
