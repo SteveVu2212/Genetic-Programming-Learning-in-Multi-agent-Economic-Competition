@@ -10,8 +10,8 @@ from IPython.display import Image, display
 
 random.seed(42)
 
-Cobweb_parameters        = {'NUM_FIRMS': 50,'H': 10, 'A': 4.48, 'B': 0.048, 'x': 0, 'y': 0.016}
-Evolution_parameters     = {'GENERATIONS': 100,'POP_SIZE': 150, 'MIN_DEPTH': 2, 'MAX_DEPTH': 17, 'TOURNAMENT_SIZE': 3, 'PCROSS': 0.9, 'PMUT': 0.033}
+Cobweb_parameters     = {'NUM_FIRMS': 50,'H': 10, 'A': 4.48, 'B': 0.048, 'x': 0, 'y': 0.016}
+Evolution_parameters  = {'GENERATIONS': 100,'POP_SIZE': 150, 'MIN_DEPTH': 2, 'MAX_DEPTH': 17, 'TOURNAMENT_SIZE': 3, 'PCROSS': 0.9, 'PMUT': 0.033}
 
 def add(x, y): return x + y
 def sub(x, y): return x - y
