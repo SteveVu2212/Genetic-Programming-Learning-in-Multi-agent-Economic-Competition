@@ -10,7 +10,7 @@ Steve Vu
 
 ## 1. Introduction
 
-Extending my previous work in multi-agent economic competitions, the project generalizes the learning of economic agenst in the Cobweb model, Jasmina Arifovic (1994), by applying the genetic programming (GP), developed by Koza (1992). By the end of the day, GP-based learning agents can also learn the equilibrium price, even under more unstable case with the cobweb ratio of 3. Furthermore, GP requires less prior knowledge then Genetic Algorithm (GAs) as solutions are expressed by parse trees, and the search space is very large.
+Extending my previous work in multi-agent economic competitions, the project generalizes the learning of economic agents in the Cobweb model, Jasmina Arifovic (1994), by applying the genetic programming (GP), developed by Koza (1992). By the end of the day, GP-based learning agents can also learn the equilibrium price, even under more unstable case with the cobweb ratio of 3. Furthermore, GP requires less prior knowledge then Genetic Algorithm (GAs) as solutions are expressed by parse trees, and the search space is very large.
 
 In practice, GP is being used increasingly in economic modelling and function approximation in multi-agent systems.
 
